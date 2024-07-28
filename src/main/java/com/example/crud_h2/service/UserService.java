@@ -5,6 +5,7 @@ import com.example.crud_h2.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.lang.reflect.Array;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -60,8 +61,12 @@ public class UserService {
 
     public List<User> getFilteredUsers(){
         List<User> users=userRepository.findAll();
-        List<User> filteredUsers=users.stream().filter(user -> user.getId().MAX_VALUE>2).toList();
+        List<User> filteredUsers=users.stream().filter(user -> user.getId()>2).toList();
         return filteredUsers;
+    }
+
+    public List<User> saveMultipleUsers(List<User> users){
+        return userRepository.saveAll(users);
     }
 
 }

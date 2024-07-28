@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/users")
 @Tag(name = "User Controller", description = "User Controller")
@@ -47,6 +49,11 @@ public class UserController {
     @GetMapping("/getFilteredUser")
     public ResponseEntity<?> getFilteredUser(){
         return ResponseEntity.ok(userService.getFilteredUsers());
+    }
+
+    @PostMapping("/saveAllUser")
+    public ResponseEntity<?> saveAllUser(@RequestBody List<User> user){
+        return ResponseEntity.ok(userService.saveMultipleUsers(user));
     }
 
 }

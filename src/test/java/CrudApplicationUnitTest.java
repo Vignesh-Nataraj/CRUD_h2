@@ -60,4 +60,14 @@ public class CrudApplicationUnitTest {
 
     }
 
+    @Test
+    public void testSaveUser(){
+        Mockito.when(userRepository.save(user1)).thenReturn(user1);
+        User result=userService.saveUser(user1);
+        assertEquals("Test",result.getNickname());
+        assertEquals("Test",result.getName());
+        assertEquals(1L,result.getId());
+        assertEquals("Test",result.getEmail());
+    }
+
 }
